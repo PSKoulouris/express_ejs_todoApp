@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To do App</title>
+
+  <link rel="stylesheet" href="/styles/todoApp.css">
+</head>
+
+
+<body>
+  <section class="todo-section">
+    <div class="todo-container">
+      <h1 class="todo-title">To do App</h1>
+
+      <!-- Task input area -->
+      <div class="task-form">
+        <!-- Task name -->
+        <input 
+          type="text" 
+          id="task" 
+          name="task" 
+          placeholder="Enter task" 
+          required
+        >
+
+        <!-- Task description -->
+        <textarea 
+          id="taskField" 
+          name="taskField" 
+          placeholder="Enter task details" 
+          rows="4"
+        ></textarea>
+
+        <!-- Action buttons -->
+        <div class="button-group">
+          <button type="button" class="task-btn">Submit</button>
+          <button type="button" class="task-btn">Edit</button>
+          <button type="button" class="task-btn delete-btn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
