@@ -1,29 +1,37 @@
-/* Layout */
 .todo-section {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #000; /* black background */
+  background-color: #000;
   color: white;
+  padding: 40px;
 }
 
-.todo-container {
+/* Grid layout: 12 columns */
+.todo-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 120px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Left side (form) */
+.todo-left {
+  grid-column: span 6;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 100px;
-  max-width: 500px;
-  width: 100%;
+  justify-content: center;
 }
 
 .todo-title {
-  font-size: 100px;
-  margin-bottom: 30px;
+  font-family: "Julius Sans One", sans-serif;
+  font-size: 120px;
+  margin-bottom: 80px;
   text-align: center;
 }
 
-/* Task input styles */
 .task-form {
   display: flex;
   flex-direction: column;
@@ -34,7 +42,7 @@
 .task-form textarea {
   background-color: black;
   border: none;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid white;
   color: white;
   padding: 10px;
   margin-bottom: 20px;
@@ -45,18 +53,38 @@
 .task-form input::placeholder,
 .task-form textarea::placeholder {
   color: #aaa;
+  font-family: "Julius Sans One", sans-serif;
 }
 
-/* Buttons */
-.button-group {
-  display: flex;
-  gap: 10px;
-  justify-content: space-between;
+/* Date input in form */
+.task-form input[type="date"] {
+  background-color: black;
+  border: none;
+  border-bottom: 1px solid white;
+  color: #aaa;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  outline: none;
 }
 
-.task-btn {
-  flex: 1; /* equal size for all three */
-  border: 2px solid gold;
+.task-form input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* makes the calendar icon visible on dark background */
+  cursor: pointer;
+}
+
+/* Date inside the card */
+.task-card-date {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 15px;
+}
+
+
+/* Submit button (full width, same size as input) */
+.task-submit {
+  width: 100%;
+  border: 1px solid gold;
   border-radius: 8px;
   background-color: black;
   color: white;
@@ -68,16 +96,103 @@
   text-align: center;
 }
 
-.task-btn:hover {
+.task-submit:hover {
   background-color: gold;
   color: black;
 }
 
-.delete-btn {
-  border-color: red;
+/* Right side (card) */
+.todo-right {
+  grid-column: span 6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.delete-btn:hover {
+.task-card {
+  background-color: #111;
+  color: white;
+  border: 1px solid white;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.task-card-title {
+  font-size: 22px;
+  font-family: "Julius Sans One", sans-serif;
+  margin-bottom: 10px;
+}
+
+.task-card-desc {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.task-card-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Make edit button larger */
+.edit-btn {
+  flex: 1;
+  border: 1px solid gold;
+  border-radius: 8px;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  font-family: "Julius Sans One", sans-serif;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.edit-btn:hover {
+  background-color: gold;
+  color: black;
+}
+
+/* Delete button as a square with an X */
+.delete-square {
+  width: 44px;
+  height: 44px;
+  border: 1px solid red;
+  border-radius: 8px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-square:hover {
   background-color: red;
   color: white;
+}
+
+
+/* Responsive (stack on small screens) */
+@media (max-width: 768px) {
+  .todo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .todo-left,
+  .todo-right {
+    grid-column: span 12;
+  }
+
+  .todo-title {
+    font-size: 60px;
+    margin-bottom: 40px;
+  }
 }
