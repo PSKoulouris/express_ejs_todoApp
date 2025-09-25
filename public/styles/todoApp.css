@@ -17,7 +17,7 @@
   max-width: 1200px;
 }
 
-/* Left side (form) */
+/* Left side */
 .todo-left {
   grid-column: span 6;
   display: flex;
@@ -74,7 +74,7 @@
   cursor: pointer;
 }
 
-/* Date inside the card */
+/* Date card */
 .task-card-date {
   font-size: 14px;
   color: #ccc;
@@ -102,7 +102,7 @@
   color: black;
 }
 
-/* Right side (card) */
+/* Right side */
 .todo-right {
   grid-column: span 6;
   display: flex;
@@ -139,7 +139,7 @@
   align-items: center;
 }
 
-/* Make edit button larger */
+
 .edit-btn {
   flex: 1;
   border: 1px solid gold;
@@ -159,7 +159,7 @@
   color: black;
 }
 
-/* Delete button as a square with an X */
+/* Delete button */
 .delete-square {
   width: 44px;
   height: 44px;

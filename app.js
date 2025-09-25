@@ -68,6 +68,15 @@ app.get("/", (req, res) => {
     res.render("todoApp")
 })
 
+app.post("/addTask", function (req, res) {
+    const task = req.body.task
+    const filePath = path.join(__dirname, "data", "data_todoApp.json")
+    const fileData = fs.readFileSync(filePath)
+    const tasks = JSON.parse(fileData)
+    tasks.push(task)
+    fs.writeFileSync(filePath, JSON.stringify(tasks))
+})
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
