@@ -1,7 +1,9 @@
+
 //Require and constants:
 const express = require("express")
 const app = express()
 const path = require("path")
+const fs = require('fs') 
 //ejs and view engine:
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs")
@@ -23,6 +25,44 @@ app.get("/", (req, res) => {
     res.send("<p>todoApp</p>")
 })
     */
+
+/*
+app.get('/',function(req,res){
+    const filePath = path.join(__dirname,'data','data_todoApp.json')
+
+    const fileData =  fs.readFileSync(filePath)
+    const tasks = JSON.parse(fileData)
+
+    res.render("todoApp", {numberOfTasks : data_todoApp.length, storedTasks :tasks})
+})
+/*
+router.get('/restaurants/:rid',function(req,res){
+    // To send back the right restaurant details!
+    const restaurantId = req.params.rid
+    //console.log(restaurantId)
+
+   // const filePath = path.join(__dirname,"..",'data','restaurants.json')
+    //const fileData = fs.readFileSync(filePath)
+
+    //const restaurants = JSON.parse(fileData)
+
+    const restaurants = resUtils.getStoredRestaurants()
+
+    for(const restaurant of restaurants){
+        if(restaurantId === restaurant.rId){
+           return res.render('restaurant-details',{restaurant}) 
+        }
+    }
+})
+*/
+
+
+
+
+
+
+
+
 
 app.get("/", (req, res) => {
     res.render("todoApp")
