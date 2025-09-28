@@ -1,3 +1,4 @@
+/* Section container */
 .todo-section {
   display: flex;
   justify-content: center;
@@ -17,7 +18,7 @@
   max-width: 1200px;
 }
 
-/* Left side */
+/* Left side: Add task */
 .todo-left {
   grid-column: span 6;
   display: flex;
@@ -32,6 +33,7 @@
   text-align: center;
 }
 
+/* Task form */
 .task-form {
   display: flex;
   flex-direction: column;
@@ -56,33 +58,12 @@
   font-family: "Julius Sans One", sans-serif;
 }
 
-/* Date input in form */
-.task-form input[type="date"] {
-  background-color: black;
-  border: none;
-  border-bottom: 1px solid white;
-  color: #aaa;
-   font-family: "Julius Sans One", sans-serif;
-  padding: 10px;
-  margin-bottom: 20px;
-  font-size: 16px;
-  outline: none;
-}
-
 .task-form input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* makes the calendar icon visible on dark background */
+  filter: invert(1);
   cursor: pointer;
 }
 
-/* Date card */
-.task-card-date {
-  font-size: 14px;
-  color: #ccc;
-  margin-bottom: 15px;
-}
-
-
-/* Submit button (full width, same size as input) */
+/* Submit button (large) */
 .task-submit {
   width: 100%;
   border: 1px solid gold;
@@ -102,7 +83,7 @@
   color: black;
 }
 
-/* Right side */
+/* Right side: Task cards */
 .todo-right {
   grid-column: span 6;
   display: flex;
@@ -110,6 +91,17 @@
   align-items: center;
 }
 
+ul {
+  padding: 0;
+  width: 100%;
+}
+
+li {
+  list-style: none;
+  margin: 20px;
+}
+
+/* Task card */
 .task-card {
   background-color: #111;
   color: white;
@@ -121,32 +113,42 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-.task-card-title {
-  font-size: 22px;
+/* Editable fields in card */
+.task-card input[type="text"],
+.task-card input[type="date"],
+.task-card textarea {
+  background-color: #111;         /* same as card */
+  color: white;
+  border: none;
+  border-bottom: 1px solid white; /* like the form */
+  padding: 10px;
   font-family: "Julius Sans One", sans-serif;
-  margin-bottom: 10px;
-}
-
-.task-card-desc {
   font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
   margin-bottom: 20px;
-  color: #ccc;
 }
 
+.task-card input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+/* Buttons container */
 .task-card-actions {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-
+/* Save button (large) */
 .edit-btn {
   flex: 1;
   border: 1px solid gold;
   border-radius: 8px;
   background-color: black;
   color: white;
-  font-size: 16px;
+  font-size: 18px;                /* keep large */
   font-family: "Julius Sans One", sans-serif;
   padding: 12px;
   cursor: pointer;
@@ -159,7 +161,7 @@
   color: black;
 }
 
-/* Delete button */
+/* Delete button (square) */
 .delete-square {
   width: 44px;
   height: 44px;
@@ -173,6 +175,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
 }
 
 .delete-square:hover {
@@ -180,8 +183,7 @@
   color: white;
 }
 
-
-/* Responsive (stack on small screens) */
+/* Responsive layout */
 @media (max-width: 768px) {
   .todo-grid {
     grid-template-columns: 1fr;
@@ -197,3 +199,4 @@
     margin-bottom: 40px;
   }
 }
+

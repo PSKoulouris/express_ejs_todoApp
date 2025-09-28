@@ -22,8 +22,8 @@
       <div class="todo-left">
         <h1 class="todo-title">Reminder</h1>
 
-        <div class="task-form">
           <!-- name -->
+        <form class="task-form" method = "POST" action = "/data_todoApp">
           <input 
             type="text" 
             id="task" 
@@ -49,13 +49,17 @@
           ></textarea>
 
           <!-- Submit button -->
-          <button type="button" class="task-submit">Submit</button>
-        </div>
+          <button type="submit" class="task-submit">Submit</button>
+        </form>
       </div>
 
       <!-- Right side: Card with info -->
       <div class="todo-right">
-        <%- include('card.ejs') %>
+        <ul>
+        <% for( const task of storedTasks) { %>
+        <%- include('card.ejs', { task: task }) %>
+        <% } %>
+        </ul>
     </div>
   </section>
 </body>

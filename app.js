@@ -4,6 +4,7 @@ const express = require("express")
 const app = express()
 const path = require("path")
 const fs = require('fs') 
+const uuid = require("uuid") //installed with npm install uuid
 //ejs and view engine:
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs")
@@ -13,6 +14,7 @@ app.set("view engine", "ejs")
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Middleware for static files:
 app.use(express.static("public"))
+app.use(express.urlencoded({extended:false}))
 
 
 
@@ -57,26 +59,72 @@ router.get('/restaurants/:rid',function(req,res){
 */
 
 
+//Save tasks in data_todoApp.json:
+app.post("/data_todoApp",function(req,res){
+    const task = req.body
+    task.uId = uuid.v4()
 
-
-
-
-
-
-
-
-app.get("/", (req, res) => {
-    res.render("todoApp")
+    const fileDataPath = path.join(__dirname, "data", "data_todoApp.json")
+    const fileData = fs.readFileSync(fileDataPath)
+    const tasks = JSON.parse(fileData)
+    tasks.push(task)
+    fs.writeFileSync(fileDataPath, JSON.stringify(tasks))
+    //res.send("User stored successfully!");
+    res.redirect("/")
 })
 
-app.post("/addTask", function (req, res) {
-    const task = req.body.task
+//retrive list of restaurants from json file: 
+app.get("/", (req, res) => {
     const filePath = path.join(__dirname, "data", "data_todoApp.json")
     const fileData = fs.readFileSync(filePath)
     const tasks = JSON.parse(fileData)
-    tasks.push(task)
-    fs.writeFileSync(filePath, JSON.stringify(tasks))
+    console.log("Tasks loaded:", tasks)
+    res.render("todoApp", {numberOfTasks : tasks.length, storedTasks :tasks})
 })
+
+//Edit task by id: 
+app.post("/tasks/:uid/edit", (req, res) => {
+    const taskId = req.params.uid;
+    const updatedData = req.body;
+
+    const filePath = path.join(__dirname, "data", "data_todoApp.json");
+    const fileData = fs.readFileSync(filePath, "utf8");
+    const tasks = JSON.parse(fileData);
+
+    const taskIndex = tasks.findIndex(t => t.uId === taskId);
+    if (taskIndex === -1) return res.status(404).send("Task not found");
+
+    tasks[taskIndex] = {
+        ...tasks[taskIndex],
+        task: updatedData.task,
+        taskDate: updatedData.taskDate,
+        taskField: updatedData.taskField
+    };
+
+    fs.writeFileSync(filePath, JSON.stringify(tasks));
+
+    res.redirect("/");
+});
+
+// Delete the task
+app.get('/tasks/:uId/delete', function(req, res) {
+    // retrieve the id of the task to be deleted:
+    const taskId = req.params.uId;
+    
+    // Retrieve all tasks:
+    const fileDataPath = path.join(__dirname, 'data', 'data_todoApp.json');
+    const fileData = fs.readFileSync(fileDataPath);
+    const tasks = JSON.parse(fileData);
+
+    // find the task with a filter():
+    const filteredTasks = tasks.filter(t => t.uId !== taskId);
+
+    // store the updated tasks
+    fs.writeFileSync(fileDataPath, JSON.stringify(filteredTasks));
+
+    // redirect to home page
+    res.redirect('/');
+});
 
 
 
