@@ -1,4 +1,4 @@
-/* Section container */
+/* Section */
 .section {
   display: flex;
   justify-content: center;
@@ -9,7 +9,7 @@
   padding: 40px;
 }
 
-/* Grid layout: 12 columns */
+/* Grid layout 12 colums */
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -18,13 +18,24 @@
   max-width: 1200px;
 }
 
-/* Left side: Add task */
+/* Left side: form 6 columns */
 .grid-left {
   grid-column: span 6;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
+/* Right side: cards 6 colums */
+.grid-right {
+  grid-column: span 6;
+  max-height: 72vh;      /* Keep within viewport */
+  overflow-y: auto;
+}
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*Left side: Form*/
 
 .title {
   font-family: "Julius Sans One", sans-serif;
@@ -33,15 +44,15 @@
   text-align: center;
 }
 
-/* Task form */
+/* Form */
 .form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.task-form input,
-.task-form textarea {
+.form input,
+.form textarea {
   background-color: black;
   border: none;
   border-bottom: 1px solid white;
@@ -52,19 +63,19 @@
   outline: none;
 }
 
-.task-form input::placeholder,
-.task-form textarea::placeholder {
+.form input::placeholder,
+.form textarea::placeholder {
   color: #aaa;
   font-family: "Julius Sans One", sans-serif;
 }
 
-.task-form input[type="date"]::-webkit-calendar-picker-indicator {
+.form input::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;
 }
 
-/* Submit button (large) */
-.task-submit {
+/* Submit button */
+.button {
   width: 100%;
   border: 1px solid gold;
   border-radius: 8px;
@@ -73,23 +84,21 @@
   font-size: 18px;
   font-family: "Julius Sans One", sans-serif;
   padding: 12px;
+  height: 48px;
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: center;
 }
 
-.task-submit:hover {
+.button:hover {
   background-color: gold;
   color: black;
 }
 
-/* Right side: Task cards */
-.grid-right {
-  grid-column: span 6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*Card style in card.ejs*/
 
 ul {
   padding: 0;
@@ -101,8 +110,8 @@ li {
   margin: 20px;
 }
 
-/* Task card */
-.task-card {
+/* Card */
+.card {
   background-color: #111;
   color: white;
   border: 1px solid white;
@@ -113,90 +122,67 @@ li {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-/* Editable fields in card */
-.task-card input[type="text"],
-.task-card input[type="date"],
-.task-card textarea {
-  background-color: #111;         /* same as card */
+/* Editable fields inside card */
+.card-form input,
+.card-form textarea {
+  background-color: #111;     
   color: white;
   border: none;
-  border-bottom: 1px solid white; /* like the form */
+  border-bottom: 1px solid white;
   padding: 10px;
   font-family: "Julius Sans One", sans-serif;
   font-size: 16px;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-.task-card input[type="date"]::-webkit-calendar-picker-indicator {
+.card-form input::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;
 }
 
-/* Buttons container */
-.task-card-actions {
+/* Buttons inside card */
+.card-actions {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-/* Save button (large) */
-.edit-btn {
-  flex: 1;
-  border: 1px solid gold;
-  border-radius: 8px;
-  background-color: black;
-  color: white;
-  font-size: 18px;                /* keep large */
-  font-family: "Julius Sans One", sans-serif;
-  padding: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: center;
-}
-
-.edit-btn:hover {
-  background-color: gold;
-  color: black;
-}
-
-/* Delete button (square) */
-.delete-square {
-  width: 44px;
-  height: 44px;
+.button-delete {
+  width: 48px;
+  height: 48px;
   border: 1px solid red;
   border-radius: 8px;
   background-color: black;
   color: white;
   font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.delete-square:hover {
+.button-delete:hover {
   background-color: red;
   color: white;
 }
 
-/* Responsive layout */
-@media (max-width: 768px) {
-  .todo-grid {
-    grid-template-columns: 1fr;
-  }
 
-  .todo-left,
-  .todo-right {
-    grid-column: span 12;
-  }
-
-  .todo-title {
-    font-size: 60px;
-    margin-bottom: 40px;
-  }
+/* Style scrollbar when right columns overflows with cards:*/
+.grid-right {
+  scrollbar-width: thin;
+  scrollbar-color: gold #111; /* thumb gold, track black */
 }
+
+
+
+
+
+
+
+
+
+
 

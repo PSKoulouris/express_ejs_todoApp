@@ -1,19 +1,12 @@
-<li class="task-card">
+<li class="card">
+    <form method="POST" action="/tasks/<%= task.uId %>/edit" class="card-form">
+          <input type="text" name="task" class="task" value="<%= task.task %>" required>
+          <input type="date" name="taskDate" class="task" value="<%= task.taskDate %>" required>
+          <textarea name="taskField" class="task" rows="3"><%= task.taskField %></textarea>
 
-            <form method="POST" action="/tasks/<%= task.uId %>/edit" class="task-edit-form">
-              <!-- Editable fields -->
-              <input type="text" name="task" class="task-card-title" value="<%= task.task %>" required>
-              <input type="date" name="taskDate" class="task-card-date" value="<%= task.taskDate %>" required>
-              <textarea name="taskField" class="task-card-desc" rows="3"><%= task.taskField %></textarea>
-
-              <!-- Buttons inline -->
-              <div class="task-card-actions">
-                <button type="submit" class="edit-btn">Edit</button>
-                
-                
-                <a class = "delete-square" 
-                href="/tasks/<%= task.uId %>/delete" onclick="return confirm('Are you sure you want to delete this task?')">✕</a>
-              </div>
-            </form>
-
-          </li>
+          <div class="card-actions">
+             <button type="submit" class="button">Edit</button>
+             <a href="/tasks/<%= task.uId %>/delete" class="button-delete">✕</a>
+          </div>
+    </form>
+</li>

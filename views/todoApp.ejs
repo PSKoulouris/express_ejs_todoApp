@@ -15,53 +15,28 @@
 </head>
 
 <body>
-  <section class="todo-section">
-    <div class="todo-grid">
+  <section class="section">
+    <div class="grid">
       
       <!-- Left side: Reminder form -->
-      <div class="todo-left">
-        <h1 class="todo-title">Reminder</h1>
-
-          <!-- name -->
-        <form class="task-form" method = "POST" action = "/data_todoApp">
-          <input 
-            type="text" 
-            id="task" 
-            name="task" 
-            placeholder="Enter task" 
-            required
-          >
-
-           <!-- date -->
-          <input 
-            type="date" 
-            id="taskDate" 
-            name="taskDate" 
-            required
-          >
-
-          <!-- description -->
-          <textarea 
-            id="taskField" 
-            name="taskField" 
-            placeholder="Enter task details" 
-            rows="4"
-          ></textarea>
-
-          <!-- Submit button -->
-          <button type="submit" class="task-submit">Submit</button>
+      <div class="grid-left">
+        <h1 class="title">Reminder</h1>
+        <form class="form" method="POST" action="/data_todoApp">
+          <input type="text" name="task" placeholder="Enter task" required>
+          <input type="date" name="taskDate" required>
+          <textarea name="taskField" placeholder="Enter task details" rows="4"></textarea>
+          <button type="submit" class="button">Submit</button>
         </form>
       </div>
 
-      <!-- Right side: Card with info -->
-      <div class="todo-right">
-        <ul>
-        <% for( const task of storedTasks) { %>
-        <%- include('card.ejs', { task: task }) %>
-        <% } %>
+      <!-- Right side: Task cards -->
+      <div class="grid-right">
+        <ul> 
+          <% for( const task of storedTasks) { %>
+             <%- include('card.ejs', { task: task }) %> 
+          <% } %> 
         </ul>
+      </div>
     </div>
   </section>
 </body>
-
-</html>
