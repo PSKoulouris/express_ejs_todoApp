@@ -1,5 +1,5 @@
 /* Section container */
-.todo-section {
+.section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@
 }
 
 /* Grid layout: 12 columns */
-.todo-grid {
+.grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 120px;
@@ -19,14 +19,14 @@
 }
 
 /* Left side: Add task */
-.todo-left {
+.grid-left {
   grid-column: span 6;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.todo-title {
+.title {
   font-family: "Julius Sans One", sans-serif;
   font-size: 120px;
   margin-bottom: 80px;
@@ -34,7 +34,7 @@
 }
 
 /* Task form */
-.task-form {
+.form {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -84,7 +84,7 @@
 }
 
 /* Right side: Task cards */
-.todo-right {
+.grid-right {
   grid-column: span 6;
   display: flex;
   justify-content: center;
